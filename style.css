@@ -81,13 +81,13 @@ body {
 .cards {
   background-color: #ffff;
   border: 2px black solid;
-  /* width: 300px; */
+  width: 300px;
   border-radius: 20px;
   border: none;
   padding: 20px;
   margin-top: 20px;
 }
-.smallName {
+.titleG {
   margin-top: 10px;
   font-size: 12px;
 }
