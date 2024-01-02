@@ -1,4 +1,8 @@
-const container = document.getElementById("container");
+const root = document.getElementById("root");
+
+const container = document.createElement("div");
+container.setAttribute("class", "container");
+root.appendChild(container);
 
 // boards
 const boards = document.createElement("div");
@@ -6,116 +10,112 @@ boards.setAttribute("class", "boards");
 container.appendChild(boards);
 
 const boardTitle = [
-  { title: "ToDo", id: "Todo" },
-  { title: "In progress", id: "Inprogress" },
-  { title: "stuck", id: "stuck" },
-  { title: "Done", id: "Done" },
+  { title: "Todo", id: "todo" },
+  { title: "In Progress", id: "inprogress" },
+  { title: "Stuck", id: "stuck" },
+  { title: "Done", id: "done" },
 ];
-function makeBoards() {
-  // 4 board
+// board
+function boardmake() {
   boardTitle.map((title) => {
     const board = document.createElement("div");
     board.setAttribute("class", "board");
     boards.appendChild(board);
 
-    //board header
-    let toDo = 0;
-    const aHeader = document.createElement("div");
-    aHeader.setAttribute("class", "board-header");
-    aHeader.innerText = title.title;
-    board.appendChild(aHeader);
+    const head = document.createElement("div");
+    head.setAttribute("class", "head");
+    head.innerText = title.title;
+    board.appendChild(head);
 
-    // board  +add card
-    const addBtn = document.createElement("div");
-    addBtn.setAttribute("class", "addBtn");
-    addBtn.innerText = "+ Add card";
-    board.appendChild(addBtn);
+    const cardCount = document.createElement("p");
+    cardCount.innerText = 0;
+    head.appendChild(cardCount);
+
+    const cards = document.createElement("div");
+    cards.setAttribute("class", "cards");
+    board.appendChild(cards);
+
+    const addCardBtn = document.createElement("button");
+    addCardBtn.setAttribute("class", "addCardBtn");
+    addCardBtn.innerText = "+  Add card";
+    board.appendChild(addCardBtn);
+
+    // add Card darah bolgond
+    addCardBtn.addEventListener("click", () => {
+      const addCardDiv = document.createElement("div");
+      addCardDiv.setAttribute("class", "addCardDiv");
+      root.appendChild(addCardDiv);
+
+      // modal
+      const modal = document.createElement("div");
+      modal.setAttribute("class", "modal");
+      addCardDiv.appendChild(modal);
+
+      // add task header
+      const modalHEader = document.createElement("h1");
+      modalHEader.innerText = "Add Task";
+      modal.appendChild(modalHEader);
+
+      // title
+      const title = document.createElement("input");
+      title.setAttribute("class", "title");
+      modal.appendChild(title);
+
+      // description
+      const description = document.createElement("input");
+      description.setAttribute("class", "description");
+      description.setAttribute("id", "description");
+      modal.appendChild(description);
+
+      // status
+      const status = document.createElement("select");
+      status = document.setAttribute("option");
+      
+      modal.appendChild(status);
+
+      // priority
+      const priority = document.createElement("select");
+      const priorityLow = document.createElement("option");
+      priorityLow.innerText = "Low";
+      priority.appendChild(priorityLow);
+
+      const priorityMedium = document.createElement("option");
+      priorityMedium.innerText = "Medium";
+      priority.appendChild(priorityMedium);
+
+      const priorityHigh = document.createElement("option");
+      priorityHigh.innerText = "High";
+      priority.appendChild(priorityHigh);
+      modal.appendChild(priority);
+
+      const addTaskBtn = document.createElement("button");
+      addTaskBtn.setAttribute("class", "addTaskBtn");
+      addTaskBtn.innerText = "Add Task";
+      modal.appendChild(addTaskBtn);
+
+      // add task button darah bolgond
+      addTaskBtn.addEventListener("click", () => {
+        const card = document.createElement("div");
+        card.setAttribute("class", "card");
+        cards.appendChild(card);
+
+        const cardTitle = document.createElement("h2");
+        cardTitle.innerText = title.value;
+        card.appendChild(cardTitle);
+
+        const cardDescription = document.createElement("p");
+        cardDescription.innerText = description.value;
+        card.appendChild(cardDescription);
+      });
+    });
   });
 }
+boardmake();
 
-makeBoards();
+// function createTask()
+// function editTask()
+// function deleteTask()
 
-const addTaskTitle = [
-  { titleG: "Title", id: "Title" },
-  { titleG: "Description", id: "Description" },
-  { titleG: "Status", id: "Status" },
-  { titleG: "Priority", id: "Priority" },
-];
-
-function makeAddTask() {
-  addTaskTitle.map((titleG) => {
-    const addTask = document.createElement("div");
-    addTask.setAttribute("class", "cards");
-
-    const header = document.createElement("div");
-    header.setAttribute("class", "board-header");
-    header.innerText = "Add Task";
-    addTask.appendChild(header);
-
-    // small Title
-    const title = document.createElement("p");
-    title.setAttribute("class", "titleG");
-    title.innerText = titleG.titleG;
-    addTask.appendChild(title);
-
-    // hooson input
-    const empty1 = document.createElement("input");
-    addTask.appendChild(empty1);
-    container.appendChild(addTask);
-  });
-  // end button
-  const endBtn = document.createElement("div");
-  endBtn.setAttribute("class", "endButton");
-  endBtn.innerText = "Add Task";
-  addTask.appendChild(endBtn);
-
-  endBtn.addEventListener("click");
+function name(params) {
+  
 }
-makeAddTask();
-// const desc = document.createElement("p");
-// desc.setAttribute("class", "smallName");
-// desc.innerText = "Description";
-// addTask.appendChild(desc);
-
-// const empty2 = document.createElement("input");
-// addTask.appendChild(empty2);
-
-// const sta = document.createElement("p");
-// sta.setAttribute("class", "smallName");
-// sta.innerText = "Status";
-// addTask.appendChild(sta);
-
-// const empty3 = document.createElement("input");
-// addTask.appendChild(empty3);
-
-// const Priority = document.createElement("p");
-// Priority.setAttribute("class", "smallName");
-// Priority.innerText = "Status";
-// addTask.appendChild(Priority);
-
-// const empty4 = document.createElement("input");
-// addTask.appendChild(empty4);
-
-// modal//////////////////////////////////////////////////////////
-
-const modal = document.createElement("div");
-modal.setAttribute("class", "modal");
-container.appendChild(modal);
-
-const modalContainer = document.createElement("div");
-modalContainer.setAttribute("class", "modal-content");
-modal.appendChild(modalContainer);
-
-modalContainer.appendChild(addTask);
-
-addBtn.addEventListener("click", () => {
-  modal.style.display = "block";
-});
-
-window.onclick = function (event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-};
-
-let todoArr = [];
