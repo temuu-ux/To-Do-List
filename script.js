@@ -38,16 +38,40 @@ let taskArr = [
     button: "Add Task",
   },
 ];
-
+// root ee duudan
 const root = document.getElementById("root");
 boardArr = ["To-Do", "In-progress", "Stuck", "Done"];
 
+// boards hiij bn
 let boards = document.createElement("div");
 boards.setAttribute("class", "boards");
 root.appendChild(boards);
 
-boardArr.map((event)=>{
-    let board=
-})
+boardArr.map((event) => {
+  // board iig hiij bn
+  let board = document.createElement("div");
+  board.setAttribute("class", "board");
+  board.setAttribute("id", `${event}`);
+  boards.appendChild(board);
+
+  // board header
+  let header = document.createElement("h2");
+  header.setAttribute("class", "boardHeader");
+  header.setAttribute("id", `${event}`);
+  header.innerText = `${event}`;
+  board.appendChild(header);
+
+  // board card
+  let card = document.createElement("div");
+  card.setAttribute("class", "card");
+  card.setAttribute("id", `${event}`);
+  board.appendChild(card);
+
+  // board button
+  let button1 = document.createElement("button");
+  button1.setAttribute("class", "button");
+  button1.innerText = "+ add card";
+  board.appendChild(button1);
+});
 
 let render = boardArr.map((event) => {});
