@@ -4,40 +4,41 @@
 //   element.setAttribute("class", idName);
 //   append.appendChild(element);
 // }
-let taskArr = [
-  {
-    title: "Task1",
-    description: "Task1",
-    status: "To Do",
-    priority: "Low",
-    id: 1,
-    button: "Add Task",
-  },
-  {
-    title: "Task2",
-    description: "Task2",
-    status: "In-progress",
-    priority: "Low",
-    id: 2,
-    button: "Add Task",
-  },
-  {
-    title: "Task3",
-    description: "Task3",
-    status: "Stuck",
-    priority: "Low",
-    id: 3,
-    button: "Add Task",
-  },
-  {
-    title: "Task4",
-    description: "Task4",
-    status: "Done",
-    priority: "Low",
-    id: 4,
-    button: "Add Task",
-  },
-];
+// let taskArr = [
+//   {
+//     title: "Task1",
+//     description: "Task1",
+//     status: "To Do",
+//     priority: "Low",
+//     id: 1,
+//     button: "Add Task",
+//   },
+//   {
+//     title: "Task2",
+//     description: "Task2",
+//     status: "In-progress",
+//     priority: "Low",
+//     id: 2,
+//     button: "Add Task",
+//   },
+//   {
+//     title: "Task3",
+//     description: "Task3",
+//     status: "Stuck",
+//     priority: "Low",
+//     id: 3,
+//     button: "Add Task",
+//   },
+//   {
+//     title: "Task4",
+//     description: "Task4",
+//     status: "Done",
+//     priority: "Low",
+//     id: 4,
+//     button: "Add Task",
+//   },
+// ];\
+debugger;
 // root ee duudan
 const root = document.getElementById("root");
 boardArr = ["To-Do", "In-progress", "Stuck", "Done"];
@@ -74,4 +75,44 @@ boardArr.map((event) => {
   board.appendChild(button1);
 });
 
-let render = boardArr.map((event) => {});
+// add task screen
+let taskTitle = ["Title", "Description", "Status", "Priority"];
+
+let popUp = document.createElement("div");
+popUp.setAttribute("class", "popUp");
+root.appendChild(popUp);
+
+const popUpHeader = document.createElement("h1");
+popUpHeader.setAttribute("class", "popUpHeader");
+popUpHeader.innerText = "Add Task";
+popUp.appendChild(popUpHeader);
+
+// popUp -iin div -iig hiij bn
+taskTitle.map((event) => {
+  // div -iin hiij bn
+  let property = document.createElement("div");
+  property.setAttribute("class", "property");
+  property.setAttribute("id", `${event}`);
+  popUp.appendChild(property);
+
+  // label
+  let label = document.createElement("label");
+  label.setAttribute("class", "label");
+  label.setAttribute("id", `${event}`);
+  label.innerText = `${event}`;
+  property.appendChild(label);
+
+  // input
+  let input = document.createElement("input");
+  input.setAttribute("class", "input");
+  property.appendChild(input);
+});
+
+// poUp button
+const popUpBtn = document.createElement("button");
+popUpBtn.setAttribute("class", "popUpBtn");
+popUpBtn.innerText = "Add Task";
+popUp.appendChild(popUpBtn);
+
+//
+debugger;
